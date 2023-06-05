@@ -11,7 +11,8 @@
     </parent>
     <groupId>com.itheima</groupId>
     <artifactId>reggie_take_out</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <version>v1</version>
     <properties>
         <java.version>1.8</java.version>
     </properties>
