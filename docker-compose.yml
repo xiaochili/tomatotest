@@ -20,7 +20,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - vproappdata:/usr/local/tomcat/webapps
+      - tomatoappdata:/usr/local/tomcat/webapps
 
   tomatoweb:
     build:
@@ -31,5 +31,5 @@ services:
       - "80:80"
       
 volumes:
-  vprodbdata: {}
-  vproappdata: {}
+  tomatodbdata: {}
+  tomatoappdata: {}
