@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  tomatodb:
+    build:
+      context: ./Docker-files/db
+    image: tomatocontainers/tomatodb
+    container_name: tomatodb
+    ports:
+      - "3306:3306"
+    volumes:
+      - tomatodbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+
+  tomatoapp:
+    build:
+      context: ./Docker-files/app
+    image: tomatocontainers/tomatoapp
+    container_name: tomatoapp
+    ports:
+      - "8080:8080"
+    volumes:
+      - vproappdata:/usr/local/tomcat/webapps
+
+  tomatoweb:
+    build:
+      context: ./Docker-files/web
+    image: tomatocontainers/tomatoweb
+    container_name: tomatoweb
+    ports:
+      - "80:80"
+      
+volumes:
+  vprodbdata: {}
+  vproappdata: {}
