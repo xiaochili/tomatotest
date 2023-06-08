@@ -1,11 +1,11 @@
-FROM tomcat:8-jre11
-LABEL "Project"="Vprofile"
-LABEL "Author"="Imran"
+FROM openjdk:11 AS BUILD_IMAGE
+RUN apt update && apt install maven -y
+RUN git clone https://github.com/xiaochili/tomatotest.git
+RUN cd vtomatotestcd  && mvn install
 
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+FROM tomcat:9-jre11
+RUN rm -rf /usr/local/tomcat/webapps/* 
+COPY --from=BUILD_IMAGE tomatotest/target/reggie_take_out-v1.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
-WORKDIR /usr/local/tomcat/
-VOLUME /usr/local/tomcat/webapps
